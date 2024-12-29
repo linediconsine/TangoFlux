@@ -367,7 +367,7 @@ def main():
                     audio_latent = unwrapped_vae.encode(audio_input).latent_dist.sample()
                     audio_latent = audio_latent.transpose(1,2) ## Tranpose  to (bsz, seq_len, channel)
 
-                loss, _, _,_, _  = model(audio_latent, text ,duration=duration)
+                loss, _, _,_  = model(audio_latent, text ,duration=duration)
                 total_loss += loss.detach().float()
                 accelerator.backward(loss)
                 
@@ -413,8 +413,8 @@ def main():
                         output_dir = os.path.join(output_dir, output_dir)
                     accelerator.save_state(output_dir)
 
-            if completed_steps >= args.max_train_steps:
-                break
+        if completed_steps >= args.max_train_steps:
+            break
 
         model.eval()
         eval_progress_bar = tqdm(range(len(eval_dataloader)), disable=not accelerator.is_local_main_process)
@@ -441,7 +441,7 @@ def main():
                 audio_latent = audio_latent.transpose(1,2) ## Tranpose  to (bsz, seq_len, channel)
                 
     
-                val_loss,_, _,_, _  = model(audio_latent, text , duration=duration)
+                val_loss,_, _,_  = model(audio_latent, text , duration=duration)
                 
                 total_val_loss += val_loss.detach().float()
                 eval_progress_bar.update(1)

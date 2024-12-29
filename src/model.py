@@ -430,7 +430,7 @@ class TangoFlux(nn.Module):
                         1,
                     )
             loss = loss.mean()
-            raw_model_loss, raw_ref_loss,implicit_acc,epsilon_diff = 0,0,0,0 ## default this to 0 if doing sft
+            raw_model_loss, raw_ref_loss,implicit_acc = 0,0,0 ## default this to 0 if doing sft
 
         else:
             encoder_hidden_states = encoder_hidden_states.repeat(2, 1, 1)
@@ -494,8 +494,7 @@ class TangoFlux(nn.Module):
                 
                 
             
-            epsilon_diff = torch.max(torch.zeros_like(model_losses_w), 
-                                      ref_losses_w-model_losses_w).mean()
+            
             
             
 
@@ -504,8 +503,8 @@ class TangoFlux(nn.Module):
             implicit_acc = (scale_term * (model_diff - ref_diff)  > 0).sum().float() / inside_term.size(0)
             loss = -1 * F.logsigmoid(inside_term).mean()  + model_losses_w.mean() 
         
-        
-        return loss, raw_model_loss, raw_ref_loss, implicit_acc,epsilon_diff
+        ## raw_model_loss, raw_ref_loss, implicit_acc is used to help to analyze dpo behaviour. 
+        return loss, raw_model_loss, raw_ref_loss, implicit_acc
         
 
     
