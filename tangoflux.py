@@ -50,6 +50,8 @@ class TangoFluxInference:
 
 
             wave = self.vae.decode(latents.transpose(2,1)).sample.cpu()[0]
+        waveform_end = int(duration * self.vae.config.sampling_rate)
+        wave =  wave[:, :, :waveform_end]
         return wave
 
 
