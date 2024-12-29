@@ -26,25 +26,27 @@ def pad_wav(waveform, segment_length):
     elif waveform_length > segment_length:
         return waveform[:segment_length]
     else:
-        pad_wav = torch.zeros(segment_length - waveform_length).to(waveform.device)
-        waveform = torch.cat([waveform, pad_wav])
+        padded_wav = torch.zeros(segment_length - waveform_length).to(waveform.device)
+        waveform = torch.cat([waveform, padded_wav])
         return waveform
     
     
 
 
-def read_wav_file(filename, duration_sec,stereo=False):
+def read_wav_file(filename, duration_sec):
     info = torchaudio.info(filename)
     sample_rate = info.sample_rate
     
     # Calculate the number of frames corresponding to the desired duration
     num_frames = int(sample_rate * duration_sec)
+
     waveform, sr = torchaudio.load(filename,num_frames=num_frames)  # Faster!!!
     
 
-    if stereo : ## Stereo audio
+    if waveform.shape[0] == 2 : ## Stereo audio
         resampler = torchaudio.transforms.Resample(orig_freq=sr, new_freq=44100)
         resampled_waveform = resampler(waveform)
+        #print(resampled_waveform.shape)
         padded_left = pad_wav(resampled_waveform[0], int(44100*duration_sec)) ## We pad left and right seperately
         padded_right = pad_wav(resampled_waveform[1], int(44100*duration_sec))
 

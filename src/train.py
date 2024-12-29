@@ -60,7 +60,7 @@ def parse_args():
         help="Config file defining the model size as well as other hyper parameter.",
     )
     parser.add_argument(
-        "--prefix", type=str, default=None,
+        "--prefix", type=str, default='',
         help="Add prefix in text prompts.",
     )
    
@@ -119,10 +119,7 @@ def parse_args():
         help="Whether to continue training from a model weight",
     )
 
-    parser.add_argument(
-        "--stereo", action='store_true', default=False,
-        help="Whether data is in stereo format",
-    )
+    
     
     args = parser.parse_args()
 
@@ -348,13 +345,14 @@ def main():
                    
                     for audio_path in audios:
                         
-                        wav = read_wav_file(audio_path,length,stereo=args.stereo) ## Only read the first 30 seconds of audio
+                        wav = read_wav_file(audio_path,length) ## Only read the first 30 seconds of audio
+                        if wav.shape[0] == 1 : ## If this audio is mono, we repeat the channel so it become "fake stereo"
+                            wav = wav.repeat(2,1)
                         audio_list.append(wav)
                     
                     
 
-                    if not args.stereo:
-                        audio_list = [wav.repeat(2,1) for wav in audio_list] ## Our vae expects stereo data, so we have to repeat the channel.
+
                     
                             
                     audio_input = torch.stack(audio_list,dim=0)
@@ -426,12 +424,13 @@ def main():
                 audio_list = []
                 for audio_path in audios:
                     
-                    wav = read_wav_file(audio_path,length,stereo=args.stereo) ## make sure none of audio exceed 30 sec
+                    wav = read_wav_file(audio_path,length) ## make sure none of audio exceed 30 sec
+                    if wav.shape[0] == 1 : ## If this audio is mono, we repeat the channel so it become "fake stereo"
+                        wav = wav.repeat(2,1)
                     audio_list.append(wav)
-
+    
                 
-                if not args.stereo:
-                    audio_list = [wav.repeat(2,1) for wav in audio_list] ## Repeat for stereo
+
 
                 audio_input = torch.stack(audio_list,dim=0)
                 audio_input = audio_input.to(device)
