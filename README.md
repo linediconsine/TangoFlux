@@ -8,7 +8,7 @@ TangoFlux: Super Fast and Faithful Text to Audio Generation with Flow Matching a
 </h1>
 
 <div align="center">
-  <img src="assests/tf_teaser.png" alt="TangoFlux" width="1000" />
+  <img src="assets/tf_teaser.png" alt="TangoFlux" width="1000" />
 
 <br/>
 
@@ -22,7 +22,7 @@ TangoFlux: Super Fast and Faithful Text to Audio Generation with Flow Matching a
 ## Overall Pipeline
 TangoFlux consists of FluxTransformer blocks which are Diffusion Transformer (DiT) and Multimodal Diffusion Transformer (MMDiT), conditioned on textual prompt and duration embedding to generate audio at 44.1kHz up to 30 seconds. TangoFlux learns a rectified flow trajectory from audio latent representation encoded by a variational autoencoder (VAE). The TangoFlux training pipeline consists of three stages: pre-training, fine-tuning, and preference optimization. TangoFlux is aligned via CRPO which iteratively generates new synthetic data and constructs preference pairs to perform preference optimization.
 
-![cover-photo](assests/tangoflux.png)
+![cover-photo](assets/tangoflux.png)
 
 ## Quickstart
 
