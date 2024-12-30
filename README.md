@@ -8,7 +8,7 @@ TangoFlux: Super Fast and Faithful Text to Audio Generation with Flow Matching a
 </h1>
 
 <div align="center">
-  <img src="assests/tf_teaser.png" alt="TangoFlux" width="300" />
+  <img src="assests/tf_teaser.png" alt="TangoFlux" width="1000" />
 
 <br/>
 
