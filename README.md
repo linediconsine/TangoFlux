@@ -20,4 +20,4 @@ TangoFlux: Super Fast and Faithful Text to Audio Generation with Flow Matching a
 
 </div>
 
-![cover-photo](assets/tangoflux.png)
+![cover-photo](assests/tangoflux.png)
