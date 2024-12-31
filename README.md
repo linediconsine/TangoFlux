@@ -35,15 +35,15 @@ TangoFlux consists of FluxTransformer blocks, which are Diffusion Transformers (
 🚀 **TangoFlux can generate up to 30 seconds long 44.1kHz stereo audios in about 3 seconds.**
 
 ## Training TangoFlux
-We use the accelerate package from HuggingFace for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have placed the default accelerator config in the `configs` folder. 
+We use the accelerate package from HuggingFace for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have placed the default accelerator config in the `configs` folder. Please specify the path to your training files in the configs/tangoflux_config.yaml. A sample of train.json and val.json has been provided. Replace them with your own audio.
 
-`tangoflux_config.yaml` defines the training and model hyperparameters:
+`tangoflux_config.yaml` defines the training file paths and model hyperparameters:
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' src/train.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
 ```
 ## Inference with TangoFlux
 Download the TangoFlux model and generate audio from a text prompt.
-TangoFlux can generate audios up to 30 second long through passing in a duration variable in the `model.generate` function.
+TangoFlux can generate audios up to 30 second long through passing in a duration variable in the `model.generate` function. Please note that duration should be strictly greather than 1 and lesser than 30.
 ```python
 import torchaudio
 from tangoflux import TangoFluxInference
