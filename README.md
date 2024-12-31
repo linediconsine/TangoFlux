@@ -31,11 +31,14 @@ TangoFlux consists of FluxTransformer blocks which are Diffusion Transformer (Di
 ## Inference with TangoFlux
 Download the TangoFlux model and generate audio from a text prompt:
 
-```import torchaudio
+```python
+import torchaudio
 from tangoflux import TangoFluxInference
 from IPython.display import Audio
+
 model = TangoFluxInference(name='declare-lab/TangoFlux')
 audio = model.generate('Hammer slowly hitting the wooden table', steps=50, duration=10)
+
 Audio(data=audio, rate=44100)
 ```
 
