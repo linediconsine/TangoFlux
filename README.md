@@ -30,7 +30,7 @@ TangoFlux consists of FluxTransformer blocks which are Diffusion Transformer (Di
 
 ## Inference with TangoFlux
 Download the TangoFlux model and generate audio from a text prompt:
-
+TangoFlux can generate audio up to 30seconds through passing in a duration variable in model.generate function.
 ```python
 import torchaudio
 from tangoflux import TangoFluxInference
@@ -41,7 +41,7 @@ audio = model.generate('Hammer slowly hitting the wooden table', steps=50, durat
 
 Audio(data=audio, rate=44100)
 ```
-
+Our evaluation shows that inferencing with 50 steps yield the best results, which takes about 3seconds. For faster inference, consider setting steps to 25 that yield similar audio quality.
 
 ## Evaluation Scripts
 
