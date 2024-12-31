@@ -41,6 +41,12 @@ We use the accelerate package from HuggingFace for multi-gpu training. Run accel
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' src/train.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
 ```
+
+To perform DPO training, modify the training files such that each data point contains a "chosen","reject","caption" and "duration". Please specify the path to your training files in the configs/tangoflux_config.yaml. An example has been provided in train_dpo.json. Replace them with your own audio.
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' src/train_dpo.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
+```
 ## Inference with TangoFlux
 Download the TangoFlux model and generate audio from a text prompt.
 TangoFlux can generate audios up to 30 second long through passing in a duration variable in the `model.generate` function. Please note that duration should be strictly greather than 1 and lesser than 30.
