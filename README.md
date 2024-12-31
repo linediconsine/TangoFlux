@@ -36,7 +36,7 @@ TangoFlux can generate stereo audio for up to 30 seconds at 44.1kHz in about 3 s
 ## Training TangoFlux
 We use the accelerate package from Hugging Face for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have default an accelerator config in the configs folder. 
 
-The tangoflux_config defines the training and model hyperparamter
+The tangoflux_config defines the training and model hyperparameter
 
 
 ```
