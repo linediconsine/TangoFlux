@@ -38,7 +38,7 @@ We use the accelerate package from HuggingFace for multi-gpu training. Run accel
 
 `tangoflux_config` defines the training and model hyperparameters:
 ```bash
-CUDA_VISISBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' src/train.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
+CUDA_VISIBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' src/train.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
 ```
 ## Inference with TangoFlux
 Download the TangoFlux model and generate audio from a text prompt.
