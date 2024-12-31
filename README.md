@@ -25,9 +25,16 @@ TangoFlux consists of FluxTransformer blocks which are Diffusion Transformer (Di
 ![cover-photo](assets/tangoflux.png)
 
 ## Quickstart
-
+TangoFlux is a Text To Audio (TTA) Model that is capable of generating stereo audio up to 30 seconds at 44.1kHz in about 3 seconds.
 ## Training TangoFlux
+We use the accelerate package from Hugging Face for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have default an accelerator config in the configs folder. 
 
+The tangoflux_config defines the training and model hyperparamter
+
+
+```
+CUDA_VISISBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' src/train.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
+```
 ## Inference with TangoFlux
 Download the TangoFlux model and generate audio from a text prompt:
 TangoFlux can generate audio up to 30seconds through passing in a duration variable in model.generate function.
@@ -41,7 +48,8 @@ audio = model.generate('Hammer slowly hitting the wooden table', steps=50, durat
 
 Audio(data=audio, rate=44100)
 ```
-Our evaluation shows that inferencing with 50 steps yield the best results, which takes about 3seconds. For faster inference, consider setting steps to 25 that yield similar audio quality.
+Our evaluation shows that inferencing with 50 steps yield the best results. A CFG scale of 3.5,4,4.5 yields simliar quality.
+For faster inference, consider setting steps to 25 that yield similar audio quality.
 
 ## Evaluation Scripts
 
