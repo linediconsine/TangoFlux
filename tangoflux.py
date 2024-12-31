@@ -9,7 +9,7 @@ from diffusers.training_utils import compute_density_for_timestep_sampling
 import copy
 import torch.nn.functional as F
 import numpy as np
-from model import TangoFlux
+from src.model import TangoFlux
 from huggingface_hub import snapshot_download
 from tqdm import tqdm
 from typing import Optional,Union,List
