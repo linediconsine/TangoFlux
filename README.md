@@ -83,14 +83,18 @@ All the inference times are observed on the same A40 GPU. The counts of trainabl
 
 ## Citation
 
-```bibtex
+https://arxiv.org/abs/2412.21037
 
-@article{Hung2025TangoFlux,
-  title = {TangoFlux: Super Fast and Faithful Text to Audio Generation with Flow Matching and Clap-Ranked Preference Optimization},
-  author = {Chia-Yu Hung and Navonil Majumder and Zhifeng Kong and Ambuj Mehrish and Rafael Valle and Bryan Catanzaro and Soujanya Poria},
-  year = {2025},
-  url = {https://openreview.net/attachment?id=tpJPlFTyxd&name=pdf},
-  note = {Available at OpenReview}
+```bibtex
+@misc{hung2024tangofluxsuperfastfaithful,
+      title={TangoFlux: Super Fast and Faithful Text to Audio Generation with Flow Matching and Clap-Ranked Preference Optimization}, 
+      author={Chia-Yu Hung and Navonil Majumder and Zhifeng Kong and Ambuj Mehrish and Rafael Valle and Bryan Catanzaro and Soujanya Poria},
+      year={2024},
+      eprint={2412.21037},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD},
+      url={https://arxiv.org/abs/2412.21037}, 
 }
+```
 
 ```
