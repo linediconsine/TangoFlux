@@ -26,9 +26,11 @@ class TangoFluxInference:
     def __init__(self,name='declare-lab/TangoFlux',device="cuda"):
         
 
-        self.vae = AutoencoderOobleck.from_pretrained("stabilityai/stable-audio-open-1.0",subfolder='vae')
+        self.vae = AutoencoderOobleck()
 
         paths = snapshot_download(repo_id=name) 
+        vae_weights = load_file("{}/vae.safetensors".format(paths))
+        self.vae.load_state_dict(vae_weights)
         weights = load_file("{}/tangoflux.safetensors".format(paths))
 
         with open('{}/config.json'.format(paths),'r') as f:
@@ -51,7 +53,7 @@ class TangoFluxInference:
 
             wave = self.vae.decode(latents.transpose(2,1)).sample.cpu()[0]
         waveform_end = int(duration * self.vae.config.sampling_rate)
-        wave =  wave[:, :, :waveform_end]
+        wave =  wave[:, :waveform_end]
         return wave
 
 
