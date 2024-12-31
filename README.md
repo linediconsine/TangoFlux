@@ -36,7 +36,7 @@ TangoFlux consists of FluxTransformer blocks, which are Diffusion Transformers (
 ## Training TangoFlux
 We use the accelerate package from HuggingFace for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have placed the default accelerator config in the `configs` folder. 
 
-`tangoflux_config` defines the training and model hyperparameters:
+`tangoflux_config.yaml` defines the training and model hyperparameters:
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' src/train.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
 ```
