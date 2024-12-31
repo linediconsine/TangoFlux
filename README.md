@@ -26,25 +26,23 @@ TangoFlux: Super Fast and Faithful Text to Audio Generation with Flow Matching a
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1j__4fl_BlaVS_225M34d-EKxsVDJPRiR?usp=sharing) 
 
 ## Overall Pipeline
-TangoFlux consists of FluxTransformer blocks which are Diffusion Transformer (DiT) and Multimodal Diffusion Transformer (MMDiT), conditioned on textual prompt and duration embedding to generate audio at 44.1kHz up to 30 seconds. TangoFlux learns a rectified flow trajectory from audio latent representation encoded by a variational autoencoder (VAE). The TangoFlux training pipeline consists of three stages: pre-training, fine-tuning, and preference optimization. TangoFlux is aligned via CRPO which iteratively generates new synthetic data and constructs preference pairs to perform preference optimization.
+TangoFlux consists of FluxTransformer blocks, which are Diffusion Transformers (DiT) and Multimodal Diffusion Transformers (MMDiT) conditioned on textual prompt and duration embedding to generate 44.1kHz audio up to 30 seconds long. TangoFlux learns a rectified flow trajectory to an audio latent representation encoded by a variational autoencoder (VAE). TangoFlux training pipeline consists of three stages: pre-training, fine-tuning, and preference optimization with CRPO. CRPO, particularly, iteratively generates new synthetic data and constructs preference pairs for preference optimization using DPO loss for flow matching.
 
 ![cover-photo](assets/tangoflux.png)
 
 
-TangoFlux can generate stereo audio for up to 30 seconds at 44.1kHz in about 3 seconds.
+🚀 **TangoFlux can generate up to 30 seconds long 44.1kHz stereo audios in about 3 seconds.**
 
 ## Training TangoFlux
-We use the accelerate package from Hugging Face for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have default an accelerator config in the configs folder. 
+We use the accelerate package from HuggingFace for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have placed the default accelerator config in the `configs` folder. 
 
-The tangoflux_config defines the training and model hyperparameter
-
-
-```
+`tangoflux_config` defines the training and model hyperparameters:
+```bash
 CUDA_VISISBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' src/train.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
 ```
 ## Inference with TangoFlux
-Download the TangoFlux model and generate audio from a text prompt:
-TangoFlux can generate audio up to 30seconds through passing in a duration variable in model.generate function.
+Download the TangoFlux model and generate audio from a text prompt.
+TangoFlux can generate audios up to 30 second long through passing in a duration variable in the `model.generate` function.
 ```python
 import torchaudio
 from tangoflux import TangoFluxInference
@@ -55,14 +53,14 @@ audio = model.generate('Hammer slowly hitting the wooden table', steps=50, durat
 
 Audio(data=audio, rate=44100)
 ```
-Our evaluation shows that inferencing with 50 steps yield the best results. A CFG scale of 3.5,4,4.5 yields simliar quality.
+Our evaluation shows that inferring with 50 steps yield the best results. A CFG scale of 3.5, 4, and 4.5 yield simliar quality output.
 For faster inference, consider setting steps to 25 that yield similar audio quality.
 
 ## Evaluation Scripts
 
-## Comparison Between TangoFlux and Other Audio Generation Models
+## TangoFlux vs. Other Audio Generation Models
 
-This comparison evaluates TangoFlux and other audio generation models across various metrics. Key metrics include:
+This key comparison metrics include:
 
 - **Output Length**: Represents the duration of the generated audio.
 - **FD**<sub>openl3</sub>: Fréchet Distance.
@@ -70,7 +68,7 @@ This comparison evaluates TangoFlux and other audio generation models across var
 - **CLAP**<sub>score</sub>: Alignment score.
 
 
-All inference times are computed on the same A40 GPU. The trainable parameters are reported in the **\#Params** column.
+All the inference times are observed on the same A40 GPU. The counts of trainable parameters are reported in the **\#Params** column.
 
 | Model                           | \#Params  | Duration | Steps | FD<sub>openl3</sub> ↓ | KL<sub>passt</sub> ↓ | CLAP<sub>score</sub> ↑ | IS ↑ | Inference Time (s) |
 |---------------------------------|-----------|----------|-------|-----------------------|----------------------|------------------------|------|--------------------|
