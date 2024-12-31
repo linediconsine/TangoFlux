@@ -65,7 +65,7 @@ For faster inference, consider setting steps to 25 that yield similar audio qual
 This comparison evaluates TangoFlux and other audio generation models across various metrics. Key metrics include:
 
 - **Output Length**: Represents the duration of the generated audio.
-- **FD**<sub>openl3</sub>: Frechet Distance.
+- **FD**<sub>openl3</sub>: Fréchet Distance.
 - **KL**<sub>passt</sub>: KL divergence.
 - **CLAP**<sub>score</sub>: Alignment score.
 
