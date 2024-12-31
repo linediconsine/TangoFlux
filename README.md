@@ -24,8 +24,9 @@ TangoFlux consists of FluxTransformer blocks which are Diffusion Transformer (Di
 
 ![cover-photo](assets/tangoflux.png)
 
-## Quickstart
-TangoFlux is a Text To Audio (TTA) Model that is capable of generating stereo audio up to 30 seconds at 44.1kHz in about 3 seconds.
+
+TangoFlux can generate stereo audio for up to 30 seconds at 44.1kHz in about 3 seconds.
+
 ## Training TangoFlux
 We use the accelerate package from Hugging Face for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have default an accelerator config in the configs folder. 
 
