@@ -32,7 +32,7 @@ TangoFlux consists of FluxTransformer blocks, which are Diffusion Transformers (
 ![cover-photo](assets/tangoflux.png)
 
 
-🚀 **TangoFlux can generate up to 30 seconds long 44.1kHz stereo audios in about 3 seconds.**
+🚀 **TangoFlux can generate up to 30 seconds long 44.1kHz stereo audios in about 3 seconds on an A40 GPU.**
 
 ## Training TangoFlux
 We use the accelerate package from HuggingFace for multi-gpu training. Run accelerate config from terminal and set up your run configuration by the answering the questions asked. We have placed the default accelerator config in the `configs` folder. Please specify the path to your training files in the configs/tangoflux_config.yaml. A sample of train.json and val.json has been provided. Replace them with your own audio.
