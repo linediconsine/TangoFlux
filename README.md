@@ -26,7 +26,7 @@ TangoFlux consists of FluxTransformer blocks, which are Diffusion Transformers (
 ## Installation
 
 ```bash
-pip install tangoflux
+pip install git+https://github.com/declare-lab/TangoFlux
 ```
 
 ## Inference
