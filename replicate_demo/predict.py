@@ -10,11 +10,13 @@ from diffusers import AutoencoderOobleck
 import soundfile as sf
 from safetensors.torch import load_file
 from huggingface_hub import snapshot_download
-from src.model import TangoFlux
+from tangoflux.model import TangoFlux
 from tangoflux import TangoFluxInference
 
 MODEL_CACHE = "model_cache"
-MODEL_URL = "https://weights.replicate.delivery/default/declare-lab/TangoFlux/model_cache.tar"
+MODEL_URL = (
+    "https://weights.replicate.delivery/default/declare-lab/TangoFlux/model_cache.tar"
+)
 
 
 class CachedTangoFluxInference(TangoFluxInference):
