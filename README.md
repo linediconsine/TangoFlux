@@ -115,5 +115,3 @@ All the inference times are observed on the same A40 GPU. The counts of trainabl
 ```
 
 ## License
-
-TangoFlux is licensed under the MIT License. See the `LICENSE` file for more details.
