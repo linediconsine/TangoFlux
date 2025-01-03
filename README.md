@@ -8,6 +8,8 @@
 
 </div>
 
+* Powered by **Stability AI**
+
 ## Demos
 
 [![Hugging Face Space](https://img.shields.io/badge/Hugging_Face_Space-TangoFlux-blue?logo=huggingface&link=https%3A%2F%2Fhuggingface.co%2Fspaces%2Fdeclare-lab%2FTangoFlux)](https://huggingface.co/spaces/declare-lab/TangoFlux)
@@ -100,6 +102,12 @@ All the inference times are observed on the same A40 GPU. The counts of trainabl
 | **TangoFlux (Base)** | 515M | 30 sec | 50 | 80.2 | 1.22 | 0.431 | 11.7 | 3.7 |
 | **TangoFlux** | 515M | 30 sec | 50 | 75.1 | 1.15 | 0.480 | 12.2 | 3.7 |
 
+## License
+
+The TangoFlux checkpoints are for non-commercial research use only. They are subject to the [Stable Audio Open’s license](https://huggingface.co/stabilityai/stable-audio-open-1.0/blob/main/LICENSE.md), [WavCap’s license](https://github.com/XinhaoMei/WavCaps?tab=readme-ov-file#license), and the original licenses accompanying each training dataset.
+
+This Stability AI Model is licensed under the Stability AI Community License, Copyright © Stability AI Ltd. All Rights Reserved
+
 ## Citation
 
 ```bibtex
@@ -113,7 +121,3 @@ All the inference times are observed on the same A40 GPU. The counts of trainabl
       url={https://arxiv.org/abs/2412.21037}, 
 }
 ```
-
-## License
-
-The TangoFlux checkpoints are for non-commercial research use only. They are subject to the [Stable Audio Open’s license](https://huggingface.co/stabilityai/stable-audio-open-1.0/blob/main/LICENSE.md), [WavCap’s license](https://github.com/XinhaoMei/WavCaps?tab=readme-ov-file#license), and the original licenses accompanying each training dataset.
