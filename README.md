@@ -115,3 +115,5 @@ All the inference times are observed on the same A40 GPU. The counts of trainabl
 ```
 
 ## License
+
+The TangoFlux checkpoints are for non-commercial research use only. They are subject to the [Stable Audio Open’s license](https://huggingface.co/stabilityai/stable-audio-open-1.0/blob/main/LICENSE.md), [WavCap’s license](https://github.com/XinhaoMei/WavCaps?tab=readme-ov-file#license), and the original licenses accompanying each training dataset.
