@@ -66,7 +66,7 @@ torchaudio.save('output.wav', audio, 44100)
 
 > This ui will let you design and execute advanced stable diffusion pipelines using a graph/nodes/flowchart based interface.
 
-Check [this](https://github.com/LucipherDev/ComfyUI-TangoFlux) repo for the custom node for *ComfyUI*. (Thanks to [![LucipherDev](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LucipherDev))
+Check [this](https://github.com/LucipherDev/ComfyUI-TangoFlux) repo for the custom node for *ComfyUI*. (Thanks to [LucipherDev](https://github.com/LucipherDev))
 
 Our evaluation shows that inference with 50 steps yields the best results. A CFG scale of 3.5, 4, and 4.5 yield similar quality output. Inference with 25 steps yields similar audio quality at a faster speed.
 
