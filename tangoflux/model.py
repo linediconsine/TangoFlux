@@ -138,7 +138,7 @@ def retrieve_timesteps(
 
 class TangoFlux(nn.Module):
 
-    def __init__(self, config, initialize_reference_model=False):
+    def __init__(self, config, text_encoder_dir=None, initialize_reference_model=False,):
 
         super().__init__()
 
@@ -156,8 +156,12 @@ class TangoFlux(nn.Module):
         self.noise_scheduler = FlowMatchEulerDiscreteScheduler(num_train_timesteps=1000)
         self.noise_scheduler_copy = copy.deepcopy(self.noise_scheduler)
         self.max_text_seq_len = 64
-        self.text_encoder = T5EncoderModel.from_pretrained(self.text_encoder_name)
-        self.tokenizer = T5TokenizerFast.from_pretrained(self.text_encoder_name)
+        self.text_encoder = T5EncoderModel.from_pretrained(
+            text_encoder_dir if text_encoder_dir is not None else self.text_encoder_name
+        )
+        self.tokenizer = T5TokenizerFast.from_pretrained(
+            text_encoder_dir if text_encoder_dir is not None else self.text_encoder_name
+        )
         self.text_embedding_dim = self.text_encoder.config.d_model
 
         self.fc = nn.Sequential(
@@ -282,10 +286,18 @@ class TangoFlux(nn.Module):
         timesteps=None,
         guidance_scale=3,
         duration=10,
+        seed=0,
         disable_progress=False,
         num_samples_per_prompt=1,
+        callback_on_step_end=None,
     ):
         """Only tested for single inference. Haven't test for batch inference"""
+        
+        torch.manual_seed(seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed(seed)
+            torch.cuda.manual_seed_all(seed)
+        torch.backends.cudnn.deterministic = True
 
         bsz = num_samples_per_prompt
         device = self.transformer.device
@@ -375,6 +387,11 @@ class TangoFlux(nn.Module):
                 )
 
             latents = scheduler.step(noise_pred, t, latents).prev_sample
+
+            progress_bar.update(1)
+
+            if callback_on_step_end is not None:
+                callback_on_step_end()
 
         return latents
 
