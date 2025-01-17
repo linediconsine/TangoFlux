@@ -86,9 +86,9 @@ To perform DPO training, modify the training files such that each data point con
 CUDA_VISIBLE_DEVICES=0,1 accelerate launch --config_file='configs/accelerator_config.yaml' tangoflux/train_dpo.py   --checkpointing_steps="best" --save_every=5 --config='configs/tangoflux_config.yaml'
 ```
 
-## Evaluation Scripts
+## Evaluation
 
-## TangoFlux vs. Other Audio Generation Models
+### TangoFlux vs. Other Audio Generation Models
 
 This key comparison metrics include:
 
