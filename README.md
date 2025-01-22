@@ -1,6 +1,5 @@
-# TangoFlux: Super Fast and Faithful Text to Audio Generation with Flow Matching and Clap-Ranked Preference Optimization 
-
 <div align="center">
+  <img src="assets/tf_opener.png" alt="TangoFluxOpener" width="1000" />
   <img src="assets/tf_teaser.png" alt="TangoFlux" width="1000" />
   <br/>
   
