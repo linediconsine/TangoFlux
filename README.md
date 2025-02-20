@@ -110,6 +110,15 @@ All the inference times are observed on the same A40 GPU. The counts of trainabl
 | **TangoFlux (Base)** | 515M | 30 sec | 50 | 80.2 | 1.22 | 0.431 | 11.7 | 3.7 |
 | **TangoFlux** | 515M | 30 sec | 50 | 75.1 | 1.15 | 0.480 | 12.2 | 3.7 |
 
+## CRPO dataset generation
+
+There are 2  py files for CRPO dataset generation.
+tangoflux/generate_crpo.py generates the crpo dataset by providing path to prompt bank and model weights. You can specify the sample size as well as number of samples per prompt for crpo in the arguments.
+tangoflux/label_crpo.py labels the generated audio and construct preference pairs. This will also create a train.json in the output dir that can be passed into train_dpo.py
+
+You can follow the example in crpo.sh which will generate crpo dataset, then perform reward labelling to generate the train.json
+
+To run CRPO for multiple iteration, you can simply repeat the above the process multiple time through setting the correct model weight.
 ## Citation
 
 ```bibtex
