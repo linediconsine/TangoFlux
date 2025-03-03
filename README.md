@@ -11,6 +11,8 @@
 </div>
 
 * Powered by **Stability AI**
+## News
+> 📣 1/3/25: We have released CRPO dataset as well as the script to perform CRPO dataset generation!
 
 ## Demos
 
